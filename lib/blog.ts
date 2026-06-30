@@ -47,7 +47,8 @@ export function getAllPosts(): BlogPostMeta[] {
   return files
     .map((file) => {
       const post = parsePost(file);
-      const { content: _, ...meta } = post;
+      const { content, ...meta } = post;
+      void content;
       return meta;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

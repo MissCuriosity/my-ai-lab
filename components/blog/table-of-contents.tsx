@@ -1,13 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { TocItem } from "@/lib/toc";
 import { cn } from "@/lib/utils";
-
-type TocItem = {
-  id: string;
-  text: string;
-  level: number;
-};
 
 type TableOfContentsProps = {
   items: TocItem[];
@@ -63,23 +58,4 @@ export function TableOfContents({ items }: TableOfContentsProps) {
       </ul>
     </nav>
   );
-}
-
-export function extractToc(content: string): TocItem[] {
-  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
-  const items: TocItem[] = [];
-  let match;
-
-  while ((match = headingRegex.exec(content)) !== null) {
-    const level = match[1].length;
-    const text = match[2].replace(/`/g, "").replace(/\*\*/g, "");
-    const id = text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-");
-
-    items.push({ id, text, level });
-  }
-
-  return items;
 }

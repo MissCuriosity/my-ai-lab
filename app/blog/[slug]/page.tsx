@@ -3,10 +3,8 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  TableOfContents,
-  extractToc,
-} from "@/components/blog/table-of-contents";
+import { TableOfContents } from "@/components/blog/table-of-contents";
+import { extractToc } from "@/lib/toc";
 import { FadeIn } from "@/components/motion/fade-in";
 import { compileBlogPost } from "@/lib/mdx";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";

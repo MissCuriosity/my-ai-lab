@@ -6,7 +6,7 @@ function CustomLink({
   href,
   children,
   ...props
-}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+}: React.ComponentPropsWithoutRef<"a">) {
   const isInternal = href?.startsWith("/") || href?.startsWith("#");
 
   if (isInternal && href) {
@@ -28,7 +28,7 @@ function Callout({
   children,
   type = "info",
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   type?: "info" | "warning" | "tip";
 }) {
   return (
@@ -45,7 +45,7 @@ function Callout({
   );
 }
 
-export const mdxComponents: MDXComponents = {
+export const mdxComponents = {
   h1: ({ children }) => (
     <h1 className="mb-6 mt-10 text-3xl font-semibold tracking-tight first:mt-0">
       {children}
@@ -70,7 +70,9 @@ export const mdxComponents: MDXComponents = {
   p: ({ children }) => (
     <p className="mb-4 leading-7 text-muted-foreground">{children}</p>
   ),
-  a: CustomLink,
+  a: (props) => (
+    <CustomLink {...(props as React.ComponentPropsWithoutRef<"a">)} />
+  ),
   ul: ({ children }) => (
     <ul className="mb-4 ml-6 list-disc space-y-2 text-muted-foreground">
       {children}
@@ -91,4 +93,4 @@ export const mdxComponents: MDXComponents = {
   pre: ({ children }) => <>{children}</>,
   code: ({ children }) => <code>{children}</code>,
   Callout,
-};
+} satisfies MDXComponents;
