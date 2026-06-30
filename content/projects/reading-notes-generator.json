@@ -1,0 +1,8 @@
+{
+  "title": "Reading Notes Generator",
+  "description": "Transform articles and papers into structured reading notes with AI-powered summaries, key insights, and actionable takeaways.",
+  "techStack": ["Next.js", "TypeScript", "OpenAI", "Tailwind CSS"],
+  "screenshots": ["/projects/reading-notes-generator.svg"],
+  "comingSoon": true,
+  "featured": true
+}

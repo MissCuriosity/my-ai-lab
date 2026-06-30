@@ -1,0 +1,8 @@
+{
+  "title": "Component Playground",
+  "description": "Interactive sandbox for building and testing UI components with live preview, props editor, and code export.",
+  "techStack": ["Next.js", "React", "shadcn/ui", "Framer Motion"],
+  "screenshots": ["/projects/component-playground.svg"],
+  "liveUrl": "https://playground.example.com",
+  "githubUrl": "https://github.com/buildwithjane/component-playground"
+}

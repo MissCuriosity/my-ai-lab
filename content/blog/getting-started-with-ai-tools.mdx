@@ -1,0 +1,79 @@
+---
+title: "Getting Started with AI Tool Building"
+description: "Practical patterns for building useful AI tools with OpenAI, LangChain, and modern frontend frameworks."
+date: "2025-06-01"
+tags: ["AI", "OpenAI", "TypeScript"]
+---
+
+AI tools are most useful when they solve a specific problem well. Here's my framework for building them.
+
+## Start with the Workflow
+
+Before writing any code, map out the user's workflow:
+
+1. What input do they have?
+2. What output do they need?
+3. Where does AI add the most value?
+
+For the Reading Notes Generator, the workflow is:
+
+```
+Article URL → Extract content → Generate structured notes → Export
+```
+
+## Choosing the Right Abstractions
+
+I prefer a simple stack for AI tools:
+
+- **Next.js** for the frontend and API routes
+- **OpenAI API** for language tasks
+- **Zod** for structured output validation
+- **Streaming** for responsive UX
+
+```typescript
+import { z } from "zod";
+
+const ReadingNotesSchema = z.object({
+  summary: z.string(),
+  keyInsights: z.array(z.string()),
+  actionItems: z.array(z.string()),
+  tags: z.array(z.string()),
+});
+
+type ReadingNotes = z.infer<typeof ReadingNotesSchema>;
+```
+
+Structured outputs with Zod ensure the AI response is always usable.
+
+## Streaming for Better UX
+
+Users shouldn't stare at a loading spinner for 10 seconds. Stream the response:
+
+```typescript
+const stream = await openai.chat.completions.create({
+  model: "gpt-4o",
+  messages: [{ role: "user", content: prompt }],
+  stream: true,
+});
+
+for await (const chunk of stream) {
+  const content = chunk.choices[0]?.delta?.content ?? "";
+  // Update UI incrementally
+}
+```
+
+## Error Handling
+
+AI APIs fail. Design for it:
+
+- Show clear error messages
+- Implement retry with exponential backoff
+- Cache successful responses when appropriate
+
+<Callout type="warning">
+  Never expose API keys in client-side code. Always proxy through server routes.
+</Callout>
+
+## What's Next
+
+I'm building the Reading Notes Generator as my first full AI lab demo. Stay tuned for the launch.

@@ -1,0 +1,9 @@
+{
+  "title": "Dev Tools Hub",
+  "description": "A collection of developer utilities for JSON formatting, regex testing, and API debugging — all in one clean interface.",
+  "techStack": ["React", "TypeScript", "Vite", "Tailwind CSS"],
+  "screenshots": ["/projects/dev-tools-hub.svg"],
+  "liveUrl": "https://devtools.example.com",
+  "githubUrl": "https://github.com/buildwithjane/dev-tools-hub",
+  "featured": true
+}

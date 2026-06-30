@@ -1,0 +1,63 @@
+---
+title: "Design Principles for Developer Tools"
+description: "Lessons learned from building developer-facing products — clarity, speed, and thoughtful defaults."
+date: "2025-05-20"
+tags: ["Design", "DX", "Frontend"]
+---
+
+Great developer tools feel invisible. They get out of your way and let you focus on the problem at hand.
+
+## Clarity Over Cleverness
+
+Every UI decision should answer: "Does this help the user accomplish their goal faster?"
+
+- Use familiar patterns (Linear, Vercel, Stripe as references)
+- Label things plainly — no jargon in the UI
+- Show, don't tell — use examples and previews
+
+## Speed is a Feature
+
+Developers notice latency. Optimize for perceived performance:
+
+- **Optimistic updates** where safe
+- **Skeleton loaders** instead of spinners
+- **Keyboard shortcuts** for power users
+- **Instant feedback** on every interaction
+
+## Thoughtful Defaults
+
+Good defaults reduce decision fatigue:
+
+```json
+{
+  "theme": "system",
+  "formatOnSave": true,
+  "tabSize": 2
+}
+```
+
+Let users customize, but make the defaults work for 80% of cases.
+
+## Consistent Design Language
+
+I follow these principles across all my projects:
+
+| Principle | Implementation |
+|-----------|----------------|
+| Minimal | Lots of whitespace, no gradients |
+| Typography | Clear hierarchy, readable sizes |
+| Motion | Subtle, purposeful animations |
+| Color | Neutral palette, accent sparingly |
+
+## Accessibility Matters
+
+Developer tools should be accessible to everyone:
+
+- Semantic HTML and ARIA labels
+- Keyboard navigation support
+- Sufficient color contrast
+- Screen reader friendly
+
+## Conclusion
+
+The best developer tools respect your time and intelligence. Design accordingly.

@@ -1,0 +1,76 @@
+---
+title: "Building a Modern Portfolio with Next.js 15"
+description: "A deep dive into building a production-ready portfolio site with Next.js App Router, MDX, and Framer Motion."
+date: "2025-06-15"
+tags: ["Next.js", "React", "TypeScript"]
+---
+
+Building a personal portfolio in 2025 means balancing aesthetics, performance, and maintainability. Here's how I approached it.
+
+## Why Next.js App Router
+
+The App Router brings several advantages for portfolio sites:
+
+- **Static generation** for blazing-fast page loads
+- **Built-in metadata API** for SEO
+- **Server Components** for zero-JS content pages
+- **File-based routing** that's intuitive to extend
+
+## Project Structure
+
+I organized the codebase around content and components:
+
+```
+app/           → Pages and routes
+components/    → Reusable UI components
+content/       → MDX blog posts & project metadata
+lib/           → Utilities and data fetching
+hooks/         → Custom React hooks
+```
+
+This separation makes it easy to add new content without touching existing code.
+
+## MDX for the Blog
+
+MDX gives you the power of React components inside Markdown. Combined with `rehype-pretty-code` and Shiki, you get beautiful syntax highlighting:
+
+```typescript
+export function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+```
+
+<Callout type="tip">
+  Use `generateStaticParams` to pre-render all blog posts at build time for optimal performance.
+</Callout>
+
+## Animations with Framer Motion
+
+Subtle animations elevate the experience without being distracting:
+
+- Hero text fades in with staggered timing
+- Cards animate on scroll with `whileInView`
+- Navbar gets a blur backdrop when scrolling
+
+The key is restraint — animations should feel natural, not flashy.
+
+## Performance Targets
+
+With static export and optimized images, the site targets:
+
+- **Lighthouse 95+** across all categories
+- **First Contentful Paint** under 1.5s
+- **Cumulative Layout Shift** near zero
+
+## Extending to an AI Lab
+
+The architecture is designed to evolve. Adding a new AI demo is as simple as:
+
+1. Create `content/projects/my-demo.json` for metadata
+2. Optionally add `app/projects/my-demo/page.tsx` for a custom interactive demo
+
+No changes to existing components required.
+
+## Conclusion
+
+A great portfolio is never finished — it evolves with your work. Start with a solid foundation, keep the design minimal, and make it easy to extend.
